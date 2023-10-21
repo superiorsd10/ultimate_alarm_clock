@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:ultimate_alarm_clock/app/modules/bottomNavigationBar/bindings/bottom_nav_bar_binding.dart';
+import 'package:ultimate_alarm_clock/app/modules/bottomNavigationBar/views/bottom_nav_bar_view.dart';
 import 'package:ultimate_alarm_clock/app/modules/splashScreen/bindings/splash_screen_binding.dart';
 import 'package:ultimate_alarm_clock/app/modules/splashScreen/views/splash_screen_view.dart';
 
@@ -27,6 +29,11 @@ class AppPages {
       name: _Paths.SPLASH_SCREEN,
       page: () => const SplashScreenView(),
       binding: SplashScreenBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOTTOM_NAV_BAR,
+      page: () => BottomNavBarView(),
+      binding: BottomNavBarBinding(),
     ),
     GetPage(
       name: _Paths.HOME,
