@@ -38,7 +38,7 @@ class AlarmControlIgnoreView extends GetView<AlarmControlIgnoreController> {
               ),
               onPressed: () {
                 Utils.hapticFeedback();
-                Get.offNamed('/home');
+                Get.offNamed('/bottom-nav-bar');
               },
             ),
           ),

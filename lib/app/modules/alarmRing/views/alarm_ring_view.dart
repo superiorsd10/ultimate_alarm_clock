@@ -63,7 +63,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
                                       controller.currentlyRingingAlarm.value,
                                 );
                               } else {
-                                Get.offNamed('/home');
+                                Get.offNamed('/bottom-nav-bar');
                               }
                             },
                           )
@@ -98,7 +98,7 @@ class AlarmControlView extends GetView<AlarmControlController> {
                           ),
                           onPressed: () {
                             Utils.hapticFeedback();
-                            Get.offNamed('/home');
+                            Get.offNamed('/bottom-nav-bar');
                           },
                         ),
                       ),

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -105,5 +106,69 @@ class SecureStorageProvider {
       key: 'theme_value',
       value: theme.toString(),
     );
+  }
+
+  Future<int> readTabIndex() async {
+    String tabIndex = await _secureStorage.read(key: 'tab_index') ?? '0';
+    return int.parse(tabIndex);
+  }
+
+  Future<void> writeTabIndex({
+    required int tabIndex,
+  }) async {
+    await _secureStorage.write(
+      key: 'tab_index',
+      value: tabIndex.toString(),
+    );
+  }
+
+  Future<bool> readIsTimerRunning() async {
+    return await _secureStorage.read(key: 'is_timer_running') == 'true';
+  }
+
+  Future<void> writeIsTimerRunning({
+    required bool isTimerRunning,
+  }) async {
+    await _secureStorage.write(
+      key: 'is_timer_running',
+      value: isTimerRunning.toString(),
+    );
+  }
+
+  Future<int> readRemainingTimeInSeconds() async {
+    String tabIndex =
+        await _secureStorage.read(key: 'remaining_time_in_seconds') ?? '-1';
+    return int.parse(tabIndex);
+  }
+
+  Future<void> writeRemainingTimeInSeconds({
+    required int remainingTimeInSeconds,
+  }) async {
+    await _secureStorage.write(
+      key: 'remaining_time_in_seconds',
+      value: remainingTimeInSeconds.toString(),
+    );
+  }
+
+  Future<void> removeRemainingTimeInSeconds() async {
+    await _secureStorage.delete(key: 'remaining_time_in_seconds');
+  }
+
+  Future<int> readStartTime() async {
+    String tabIndex = await _secureStorage.read(key: 'start_time') ?? '-1';
+    return int.parse(tabIndex);
+  }
+
+  Future<void> writeStartTime({
+    required int startTime,
+  }) async {
+    await _secureStorage.write(
+      key: 'start_time',
+      value: startTime.toString(),
+    );
+  }
+
+  Future<void> removeStartTime() async {
+    await _secureStorage.delete(key: 'start_time');
   }
 }

@@ -566,7 +566,7 @@ class AddOrUpdateAlarmView extends GetView<AddOrUpdateAlarmController> {
                     OutlinedButton(
                       onPressed: () {
                         Get.offNamedUntil(
-                          '/home',
+                          '/bottom-nav-bar',
                           (route) => route.settings.name == '/splash-screen',
                         );
                       },

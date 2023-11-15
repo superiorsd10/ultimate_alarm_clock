@@ -219,7 +219,7 @@ class AlarmHandlerModel extends TaskHandler {
       FlutterForegroundTask.launchApp('/alarm-ring');
       _sendPort?.send('alarmRingRoute');
     } else {
-      FlutterForegroundTask.launchApp('/home');
+      FlutterForegroundTask.launchApp('/bottom-nav-bar');
       _sendPort?.send('onNotificationPressed');
     }
   }

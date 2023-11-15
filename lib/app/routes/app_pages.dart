@@ -3,6 +3,11 @@ import 'package:ultimate_alarm_clock/app/modules/bottomNavigationBar/bindings/bo
 import 'package:ultimate_alarm_clock/app/modules/bottomNavigationBar/views/bottom_nav_bar_view.dart';
 import 'package:ultimate_alarm_clock/app/modules/splashScreen/bindings/splash_screen_binding.dart';
 import 'package:ultimate_alarm_clock/app/modules/splashScreen/views/splash_screen_view.dart';
+import 'package:ultimate_alarm_clock/app/modules/timer/bindings/timer_binding.dart';
+import 'package:ultimate_alarm_clock/app/modules/timer/views/start_timer_view.dart';
+import 'package:ultimate_alarm_clock/app/modules/timer/views/timer_view.dart';
+import 'package:ultimate_alarm_clock/app/modules/timerRing/bindings/timer_ring_binding.dart';
+import 'package:ultimate_alarm_clock/app/modules/timerRing/views/timer_ring_view.dart';
 
 import '../modules/addOrUpdateAlarm/bindings/add_or_update_alarm_binding.dart';
 import '../modules/addOrUpdateAlarm/views/add_or_update_alarm_view.dart';
@@ -32,7 +37,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BOTTOM_NAV_BAR,
-      page: () => BottomNavBarView(),
+      page: () => const BottomNavBarView(),
       binding: BottomNavBarBinding(),
     ),
     GetPage(
@@ -69,6 +74,20 @@ class AppPages {
       name: _Paths.ALARM_CHALLENGE,
       page: () => AlarmChallengeView(),
       binding: AlarmChallengeBinding(),
+    ),
+    GetPage(
+      name: _Paths.TIMER_VIEW,
+      page: () => TimerView(),
+      binding: TimerBinding(),
+    ),
+    GetPage(
+      name: _Paths.START_TIMER_VIEW,
+      page: () => StartTimerView(),
+    ),
+    GetPage(
+      name: _Paths.TIMER_RING_VIEW,
+      page: () => TimerControlView(),
+      binding: TimerControlBinding(),
     ),
   ];
 }

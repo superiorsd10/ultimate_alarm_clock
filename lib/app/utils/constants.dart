@@ -106,6 +106,21 @@ ThemeData kThemeData = ThemeData(
     activeTrackColor: kprimaryColor,
     inactiveTrackColor: kprimaryTextColor.withOpacity(0.3),
   ),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: kprimaryBackgroundColor,
+    selectedLabelStyle: TextStyle(
+      color: kprimaryColor,
+    ),
+    unselectedLabelStyle: TextStyle(
+      color: kprimaryTextColor,
+    ),
+    selectedIconTheme: IconThemeData(
+      color: kprimaryColor,
+    ),
+    unselectedIconTheme: IconThemeData(
+      color: kprimaryTextColor,
+    ),
+  ),
 );
 
 // Light ThemeData

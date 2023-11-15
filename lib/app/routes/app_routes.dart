@@ -11,6 +11,9 @@ abstract class Routes {
   static const ALARM_RING_IGNORE = _Paths.ALARM_RING_IGNORE;
   static const SETTINGS = _Paths.SETTINGS;
   static const ALARM_CHALLENGE = _Paths.ALARM_CHALLENGE;
+  static const TIMER_VIEW = _Paths.TIMER_VIEW;
+  static const START_TIMER_VIEW = _Paths.START_TIMER_VIEW;
+  static const TIMER_RING_VIEW = _Paths.TIMER_RING_VIEW;
 }
 
 abstract class _Paths {
@@ -23,4 +26,7 @@ abstract class _Paths {
   static const ALARM_RING_IGNORE = '/alarm-ring-ignore';
   static const SETTINGS = '/settings';
   static const ALARM_CHALLENGE = '/alarm-challenge';
+  static const TIMER_VIEW = '/timer-view';
+  static const START_TIMER_VIEW = '/start-timer-view';
+  static const TIMER_RING_VIEW = '/timer-ring-view';
 }

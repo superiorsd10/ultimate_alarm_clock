@@ -18,6 +18,11 @@ void main() async {
     const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
   );
 
+  // Workmanager().initialize(
+  //   callbackDispatcher,
+  //   isInDebugMode: true,
+  // );
+
   runApp(
     GetMaterialApp(
       theme: kLightThemeData,

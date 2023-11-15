@@ -40,6 +40,8 @@ dependencies:
     sdk: flutter
   vibration: ^1.8.1
   flutter_launcher_icons: ^0.13.1
+  get_it: ^7.6.4
+  workmanager: ^0.5.2
 
 dev_dependencies:
   flutter_lints: ^2.0.0

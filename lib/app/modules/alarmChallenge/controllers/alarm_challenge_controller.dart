@@ -155,7 +155,7 @@ class AlarmChallengeController extends GetxController {
   isChallengesComplete() {
     if (!Utils.isChallengeEnabled(alarmRecord)) {
       isTimerEnabled = false;
-      Get.offAllNamed('/home');
+      Get.offAllNamed('/bottom-nav-bar');
     }
   }
 

@@ -4,6 +4,7 @@ import 'package:ultimate_alarm_clock/app/modules/home/controllers/home_controlle
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/settings_controller.dart';
 import 'package:ultimate_alarm_clock/app/modules/settings/controllers/theme_controller.dart';
 import 'package:ultimate_alarm_clock/app/modules/timer/controllers/timer_controller.dart';
+import 'package:ultimate_alarm_clock/app/modules/timerRing/controllers/timer_ring_controller.dart';
 
 class BottomNavBarBinding extends Bindings {
   @override
@@ -17,11 +18,14 @@ class BottomNavBarBinding extends Bindings {
     Get.put<ThemeController>(
       ThemeController(),
     );
-    Get.put<TimerController>(
-      TimerController(),
+    Get.lazyPut<TimerController>(
+      () => TimerController(),
     );
-    Get.put<BottomNavBarController>(
-      BottomNavBarController(),
+    Get.lazyPut<BottomNavBarController>(
+      () => BottomNavBarController(),
+    );
+    Get.lazyPut<TimerControlController>(
+      () => TimerControlController(),
     );
   }
 }

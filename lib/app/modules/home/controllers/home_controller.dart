@@ -40,8 +40,10 @@ class HomeController extends GetxController with AlarmHandlerSetupModel {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final Rx<UserModel?> userModel = Rx<UserModel?>(null);
   final RxBool isUserSignedIn = false.obs;
-  final floatingButtonKey = GlobalKey<ExpandableFabState>();
-  final floatingButtonKeyLoggedOut = GlobalKey<ExpandableFabState>();
+  GlobalKey<ExpandableFabState> floatingButtonKey =
+      GlobalKey<ExpandableFabState>();
+  GlobalKey<ExpandableFabState> floatingButtonKeyLoggedOut =
+      GlobalKey<ExpandableFabState>();
 
   final alarmIdController = TextEditingController();
 

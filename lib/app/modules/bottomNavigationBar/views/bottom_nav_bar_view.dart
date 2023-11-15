@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ultimate_alarm_clock/app/modules/bottomNavigationBar/controllers/bottom_nav_bar_controller.dart';
-import 'package:ultimate_alarm_clock/app/modules/home/views/home_view.dart';
-import 'package:ultimate_alarm_clock/app/modules/timer/views/timer_view.dart';
 
 class BottomNavBarView extends GetView<BottomNavBarController> {
-  BottomNavBarView({Key? key}) : super(key: key);
-
-  BottomNavBarController bottomNavBarController =
-      Get.find<BottomNavBarController>();
-
-  final List<Widget> pages = [
-    HomeView(),
-    TimerView(),
-  ];
+  const BottomNavBarView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(
-        () => pages[controller.activeTabIndex.value],
+        () => IndexedStack(
+          index: controller.activeTabIndex.value,
+          children: controller.pages,
+        ),
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
@@ -35,9 +28,9 @@ class BottomNavBarView extends GetView<BottomNavBarController> {
             ),
           ],
           onTap: (index) {
-            bottomNavBarController.changeTabIndex(index);
+            controller.changeTab(index);
           },
-          currentIndex: bottomNavBarController.activeTabIndex.value,
+          currentIndex: controller.activeTabIndex.value,
         ),
       ),
     );
