@@ -1,20 +1,21 @@
 import 'dart:async';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_alarm_clock/app/data/models/alarm_handler_setup_model.dart';
 import 'package:ultimate_alarm_clock/app/data/providers/secure_storage_provider.dart';
 import 'package:ultimate_alarm_clock/app/modules/timer/views/timer_bottom_sheet.dart';
 import 'package:ultimate_alarm_clock/app/utils/constants.dart';
-import 'package:workmanager/workmanager.dart';
 
-class TimerController extends GetxController
-    with WidgetsBindingObserver, AlarmHandlerSetupModel {
+class TimerController extends GetxController with WidgetsBindingObserver {
   final initalTime = DateTime(0, 0, 0, 0, 1, 0).obs;
   final remainingTime = const Duration(hours: 0, minutes: 0, seconds: 0).obs;
   final currentTime = const Duration(hours: 0, minutes: 0, seconds: 0).obs;
   final startTime = 0.obs;
   final isTimerPaused = false.obs;
   final isTimerRunning = false.obs;
+
+  final int timerID = 1;
 
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -109,8 +110,6 @@ class TimerController extends GetxController
       } else {
         // Timer has completed; clear the stored data
         print('REMOVING THE TIMER DATA');
-        await _secureStorageProvider.removeRemainingTimeInSeconds();
-        await _secureStorageProvider.removeStartTime();
         stopTimer();
       }
     }
@@ -123,16 +122,10 @@ class TimerController extends GetxController
       final now = DateTime.now();
       startTime.value = now.millisecondsSinceEpoch;
       isTimerRunning.value = true;
-      // Get.toNamed('/start-timer-view');
-      // createForegroundTask();
-      // await startForegroundTask(remainingTime.value);
-      Workmanager().registerPeriodicTask(
-        'timerTask',
-        'timerTask',
-        frequency: const Duration(seconds: 1),
-        inputData: {
-          'timerDuration': remainingTime.value.inSeconds,
-        },
+      await AndroidAlarmManager.oneShot(
+        Duration(seconds: remainingTime.value.inSeconds),
+        timerID,
+        stopTimer,
       );
       Get.bottomSheet(
         TimerBottomSheet(),
@@ -160,13 +153,17 @@ class TimerController extends GetxController
     startTime.value = 0;
     await _secureStorageProvider.removeRemainingTimeInSeconds();
     await _secureStorageProvider.removeStartTime();
-    // Get.back();
+    await _secureStorageProvider.writeIsTimerRunning(isTimerRunning: false);
+    // AndroidAlarmManager.cancel(timerID);
+    print(await FlutterForegroundTask.isRunningService);
+    FlutterForegroundTask.launchApp('/settings');
+    Get.back();
   }
 
   void pauseTimer() async {
     countdownTimer.value?.cancel();
     isTimerPaused.value = true;
-    await stopForegroundTask();
+    AndroidAlarmManager.cancel(timerID);
   }
 
   void resumeTimer() async {
@@ -176,8 +173,11 @@ class TimerController extends GetxController
         (_) => setCountDown(),
       );
       isTimerPaused.value = false;
-      createForegroundTask();
-      await startForegroundTask(remainingTime.value);
+      await AndroidAlarmManager.oneShot(
+        Duration(seconds: remainingTime.value.inSeconds),
+        timerID,
+        stopTimer,
+      );
     }
   }
 
@@ -189,9 +189,5 @@ class TimerController extends GetxController
     } else {
       remainingTime.value = Duration(seconds: seconds);
     }
-  }
-
-  void stopForegroundService() async {
-    await stopForegroundTask();
   }
 }

@@ -42,7 +42,6 @@ class TimerBottomSheet extends GetView<TimerController> {
                   heroTag: 'stop',
                   onPressed: () {
                     controller.stopTimer(); 
-                    controller.stopForegroundService(); 
                     Get.offAllNamed('/bottom-nav-bar');
                   },
                   child: const Icon(Icons.close),

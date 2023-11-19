@@ -1,9 +1,7 @@
 import 'package:flutter_ringtone_player/flutter_ringtone_player.dart';
 import 'package:get/get.dart';
-import 'package:ultimate_alarm_clock/app/data/models/alarm_handler_setup_model.dart';
 
-class TimerControlController extends GetxController
-    with AlarmHandlerSetupModel {
+class TimerControlController extends GetxController {
   // late StreamSubscription<FGBGType> _subscription;
 
   @override
@@ -32,6 +30,6 @@ class TimerControlController extends GetxController
   }
 
   void stopForegroundService() async {
-    await stopForegroundTask();
+    // await stopForegroundTask();
   }
 }
